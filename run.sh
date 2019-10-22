@@ -12,7 +12,7 @@ function delete_latest_docker_image() {
 
 function build_application() {
     echo "Building app..."
-    ./mvnw clean install
+    mvn clean install
 }
 
 function build_docker_image() {

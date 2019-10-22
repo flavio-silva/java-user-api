@@ -23,6 +23,7 @@ services:
       MYSQL_DATABASE: fiap
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_PASSWORD: 123456
+      MYSQL_DATABASE: microservices
     ports:
     - "3306:3306"
     networks:
