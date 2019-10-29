@@ -1,7 +1,9 @@
 version: '3.5'
 services:
   fiap-microservices:
-    build: .
+    build: 
+      context:  services/java-user-api/
+      dockerfile: Dockerfile
     image: fiap-microservices
     container_name: fiap-microservices
     ports:
@@ -28,9 +30,22 @@ services:
     - "3306:3306"
     networks:
     - fiap-microservices
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: fiap-rabbit
+    restart: always
+  # environment:
+  #   RABBITMQ_USER: "rabbitmq"
+  #   RABBITMQ_PASS: "rabbitmq"
+  #   RABBITMQ_DEFAULT_VHOST: "/"    
+    ports:
+    - "15672:15672"
+    - "5672:5672"
+    - "25676:25676"
+    networks:
+    - fiap-microservices
 networks:
   fiap-microservices:
     name: fiap-microservices
-
 volumes:
   db-data:
