@@ -1,0 +1,8 @@
+br/com/fiap/controller/PersonController.class
+br/com/fiap/handler/CustomizedResponseEntityExceptionHandler.class
+br/com/fiap/Startup.class
+br/com/fiap/services/PersonServices.class
+br/com/fiap/model/Person.class
+br/com/fiap/repository/PersonRepository.class
+br/com/fiap/exception/ExceptionResponse.class
+br/com/fiap/exception/ResourceNotFoundException.class
