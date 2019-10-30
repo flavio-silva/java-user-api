@@ -26,16 +26,15 @@ public class SwaggerConfig {
                 .build()
                 .apiInfo(apiInfo());
     }
-
-
+    
     private ApiInfo apiInfo() {
-        return new ApiInfo("Restful Api With Spring Boot",
-                "Alguma descrição sobre a api",
-                "v1",
-                "termos de serviço url",
-                new Contact("wellington", "url", "a@a.com"),
-                "licenca da api",
-                "licensa url",
+        return new ApiInfo("Person Api",
+                "Person Api With Spring Boot",
+                "V1",
+                "Service Terms",
+                new Contact("Fiap", "www.fiap.com.br", "fiap@fiap.com.br"),
+                "apache v2",
+                "apachev2",
                 Collections.emptyList());
     }
 
