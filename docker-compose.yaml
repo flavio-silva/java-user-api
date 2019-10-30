@@ -34,18 +34,38 @@ services:
     image: rabbitmq:3-management
     container_name: fiap-rabbit
     restart: always
-  # environment:
-  #   RABBITMQ_USER: "rabbitmq"
-  #   RABBITMQ_PASS: "rabbitmq"
-  #   RABBITMQ_DEFAULT_VHOST: "/"    
+    environment:
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEAFULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"    
     ports:
     - "15672:15672"
     - "5672:5672"
     - "25676:25676"
     networks:
     - fiap-microservices
+  # node:
+  #   build:
+  #     context: services/node/
+  #     dockerfile: Dockerfile
+  #   container_name: fiap-node
+  #   restart: always
+  #   environment: 
+  #     HOST: node
+  #     PORT: 4000
+  #   expose:
+  #     - 4000
+  #   working_dir: /app
+  #   ports:
+  #     - 4000:4000
+  #   volumes:
+  #     - ./node:/app
+  #     - $HOME/.ssh:/root/.ssh
+  #     - $HOME/.npmrc:/root/.npmrc
+  #   networks: 
+  #   - fiap-microservices  
 networks:
   fiap-microservices:
-    name: fiap-microservices
+    # name: fiap-microservices
 volumes:
   db-data:
