@@ -26,7 +26,7 @@ public class SwaggerConfig {
                 .build()
                 .apiInfo(apiInfo());
     }
-    
+
     private ApiInfo apiInfo() {
         return new ApiInfo("Person Api",
                 "Person Api With Spring Boot",
@@ -34,7 +34,7 @@ public class SwaggerConfig {
                 "Service Terms",
                 new Contact("Fiap", "www.fiap.com.br", "fiap@fiap.com.br"),
                 "apache v2",
-                "apachev2",
+                "apache v2",
                 Collections.emptyList());
     }
 
