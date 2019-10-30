@@ -28,10 +28,9 @@ services:
       SERVICE_TAGS: dev
     working_dir: /var/www
     volumes:
-      - ./:/var/www
+      - ./services/php-slack-consumer:/var/www
     networks:
       - fiap-microservices
-    command: php artisan queue:work --tries=3
   db:
     image: mysql:5.7
     volumes:
