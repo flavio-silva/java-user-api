@@ -49,14 +49,8 @@ class ConsumeRabbitMQMessages extends Command
             $message->getDeliveryInfo()->acknowledge();
         }, 'routing-key', [
             'queue' => [
-                'name'         => 'default',
-                'declare'      => true,
-                'exclusive'    => false,
-            ],
-            'qos' => [
-                'enabled'            => true,
-                'qos_prefetch_count' => 5,
-            ],
+                'name' => 'default',
+            ]
         ]);
     }
 }
