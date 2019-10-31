@@ -21,16 +21,11 @@ services:
       dockerfile: Dockerfile
     image: laravel
     container_name: consumer-php-app
-    restart: unless-stopped
-    tty: true
-    environment:
-      SERVICE_NAME: consumer-php-app
-      SERVICE_TAGS: dev
     working_dir: /var/www
     volumes:
       - ./services/php-slack-consumer:/var/www
     networks:
-      - fiap-microservices
+    - fiap-microservices
   db:
     image: mysql:5.7
     volumes:
