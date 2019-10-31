@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use Anik\Amqp\ConsumableMessage;
+use App\Notifications\UserCreated;
+use App\User;
 use Illuminate\Console\Command;
 
 class ConsumeRabbitMQMessages extends Command
@@ -40,6 +42,10 @@ class ConsumeRabbitMQMessages extends Command
     {
         app('amqp')->consume(function (ConsumableMessage $message) {
             echo $message->getStream() . PHP_EOL;
+
+            $admin = factory(User::class)->state('admin')->make();
+            $admin->notify(new UserCreated('user test', 'user@test.com'));
+
             $message->getDeliveryInfo()->acknowledge();
         }, 'routing-key', [
             'queue' => [
