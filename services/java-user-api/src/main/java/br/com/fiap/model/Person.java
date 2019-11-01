@@ -1,5 +1,7 @@
 package br.com.fiap.model;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -26,9 +28,19 @@ public class Person implements Serializable {
     @Column(nullable = false, length = 6)
     private String gender;
 
-    public Person(){
+    @Column(name = "email", nullable = false, length = 80)
+    private String email;
 
-    }
+    @Column(name = "password", nullable = false, length = 80)
+    private String password;
+
+    @Column(name = "username", nullable = false, length = 80)
+    private String username;
+
+    @Column(name = "telephone", nullable = false, length = 80)
+    private String telephone;
+
+
 
     public long getId() {
         return id;
@@ -70,20 +82,61 @@ public class Person implements Serializable {
         this.gender = gender;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+
+    public Person(){
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Person)) return false;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ;
+        if (!(o instanceof Person)) return false;
         Person person = (Person) o;
         return getId() == person.getId() &&
                 Objects.equals(getFirstName(), person.getFirstName()) &&
                 Objects.equals(getLastName(), person.getLastName()) &&
                 Objects.equals(getAddress(), person.getAddress()) &&
-                Objects.equals(getGender(), person.getGender());
+                Objects.equals(getGender(), person.getGender()) &&
+                Objects.equals(getEmail(), person.getEmail()) &&
+                Objects.equals(getPassword(), person.getPassword()) &&
+                Objects.equals(getUsername(), person.getUsername()) &&
+                Objects.equals(getTelephone(), person.getTelephone());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getAddress(), getGender());
+        return Objects.hash(getId(), getFirstName(), getLastName(), getAddress(), getGender(), getEmail(), getPassword(), getUsername(), getTelephone());
     }
 }
