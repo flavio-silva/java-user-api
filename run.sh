@@ -12,7 +12,7 @@ function delete_latest_docker_image() {
 
 function build_application() {
     echo "Building app..."
-    mvn clean install -f services/java-user-api
+    # mvn clean install -f services/java-user-api
 }
 
 function build_docker_image() {

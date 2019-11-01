@@ -1,10 +1,10 @@
 version: '3.5'
 services:
   fiap-microservices:
-    build:
-      context:  services/java-user-api/
-      dockerfile: Dockerfile
-    image: fiap-microservices
+    # build:
+    #   context:  services/java-user-api/
+    #   dockerfile: Dockerfile
+    image: wellbastos/fiap-microservices:latest 
     container_name: fiap-microservices
     ports:
     - "8080:8080"
@@ -15,17 +15,17 @@ services:
       JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:7000
     networks:
     - fiap-microservices
-  consumer-php-app:
-    build:
-      context: services/php-slack-consumer/
-      dockerfile: Dockerfile
-    image: laravel
-    container_name: consumer-php-app
-    working_dir: /var/www
-    volumes:
-      - ./services/php-slack-consumer:/var/www
-    networks:
-    - fiap-microservices
+  # consumer-php-app:
+  #   build:
+  #     context: services/php-slack-consumer/
+  #     dockerfile: Dockerfile
+  #   image: laravel
+  #   container_name: consumer-php-app
+  #   working_dir: /var/www
+  #   volumes:
+  #     - ./services/php-slack-consumer:/var/www
+  #   networks:
+  #   - fiap-microservices
   db:
     image: mysql:5.7
     volumes:
