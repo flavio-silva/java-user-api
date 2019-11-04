@@ -24,16 +24,6 @@ class ConsumeRabbitMQMessages extends Command
     protected $description = 'Consume RabbitMQ Messages';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
@@ -47,7 +37,7 @@ class ConsumeRabbitMQMessages extends Command
             $admin->notify(new UserCreated('user test', 'user@test.com'));
 
             $message->getDeliveryInfo()->acknowledge();
-        }, 'routing-key', [
+        }, null, [
             'queue' => [
                 'name' => 'default',
             ]
