@@ -4,7 +4,7 @@ services:
     # build:
     #   context:  services/java-user-api/
     #   dockerfile: Dockerfile
-    image: wellbastos/fiap-microservices:latest 
+    image: wellbastos/fiap-microservices:latest
     container_name: fiap-microservices
     ports:
     - "8080:8080"
@@ -15,17 +15,30 @@ services:
       JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:7000
     networks:
     - fiap-microservices
-  # consumer-php-app:
-  #   build:
-  #     context: services/php-slack-consumer/
-  #     dockerfile: Dockerfile
-  #   image: laravel
-  #   container_name: consumer-php-app
-  #   working_dir: /var/www
-  #   volumes:
-  #     - ./services/php-slack-consumer:/var/www
-  #   networks:
-  #   - fiap-microservices
+  consumer-php-app:
+    build:
+      context: services/php-slack-consumer/
+      dockerfile: Dockerfile
+    image: laravel
+    container_name: consumer-php-app
+    working_dir: /var/www
+    volumes:
+      - ./services/php-slack-consumer:/var/www
+    environment:
+      - APP_NAME=Consumer
+      - APP_ENV=local
+      - APP_KEY=base64:and4lvch4HIe73Iw/JEQN6gh3YWCI0nk54rdOnaIKEQ=
+      - APP_DEBUG=true
+      - AMQP_USERNAME=rabbitmq
+      - AMQP_PASSWORD=rabbitmq
+      - AMQP_HOST=fiap-rabbit
+      - AMQP_PORT=5672
+      - AMQP_VHOST=/
+      - AMQP_EXCHANGE_NAME=amq.fanout
+      - AMQP_EXCHANGE_TYPE=fanout
+      - SLACK_WEBHOOK_URL=https://hooks.slack.com/services/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
+    networks:
+    - fiap-microservices
   db:
     image: mysql:5.7
     volumes:
