@@ -67,28 +67,20 @@ services:
     - "25676:25676"
     networks:
     - fiap-microservices
-  # node:
-  #   build:
-  #     context: services/node/
-  #     dockerfile: Dockerfile
-  #   container_name: fiap-node
-  #   restart: always
-  #   environment:
-  #     HOST: node
-  #     PORT: 4000
-  #   expose:
-  #     - 4000
-  #   working_dir: /app
-  #   ports:
-  #     - 4000:4000
-  #   volumes:
-  #     - ./node:/app
-  #     - $HOME/.ssh:/root/.ssh
-  #     - $HOME/.npmrc:/root/.npmrc
-  #   networks:
-  #   - fiap-microservices
-networks:
-  fiap-microservices:
-    # name: fiap-microservices
+  node:
+    build:
+      context: services/front-end/
+      dockerfile: Dockerfile
+    image: vuejs
+    container_name: front-end
+    working_dir: /app
+    ports:
+      - 8081:8080
+    volumes:
+      - ./services/front-end:/app
+    networks:
+    - fiap-microservices
 volumes:
   db-data:
+networks:
+  fiap-microservices:
