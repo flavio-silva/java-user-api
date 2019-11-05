@@ -11,8 +11,13 @@ function delete_latest_docker_image() {
 }
 
 function build_application() {
-    echo "Building app..."
-    # mvn clean install -f services/java-user-api
+    echo "Building java api..."
+    mvn clean install -f services/java-user-api
+    echo "Building Vue app..."
+    cd services/front-end
+    npm install 
+    npm run build
+    cd ../..
 }
 
 function build_docker_image() {

@@ -1,10 +1,10 @@
 version: '3.5'
 services:
   fiap-microservices:
-    # build:
-    #   context:  services/java-user-api/
-    #   dockerfile: Dockerfile
-    image: wellbastos/fiap-microservices:latest
+    build:
+      context:  services/java-user-api/
+      dockerfile: Dockerfile
+    # image: wellbastos/fiap-microservices:latest
     container_name: fiap-microservices
     ports:
     - "8080:8080"
@@ -67,11 +67,12 @@ services:
     - "25676:25676"
     networks:
     - fiap-microservices
-  node:
+  frontend: 
     build:
       context: services/front-end/
       dockerfile: Dockerfile
     image: vuejs
+    restart: always    
     container_name: front-end
     working_dir: /app
     ports:
