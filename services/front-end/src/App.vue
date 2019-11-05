@@ -11,33 +11,33 @@
         <div class="form-row">
           <div class="form-group col-lg-6">
             <label
-              for="first_name"
+              for="firstName"
               class="col-form-label font-weight-bold"
             >Nome: <span class="text-danger">*</span></label>
             <input
-              name="first_name"
-              id="first_name"
+              name="firstName"
+              id="firstName"
               type="text"
               class="form-control"
               placeholder="Digite o seu nome"
               required
-              v-model="user.first_name"
+              v-model="user.firstName"
             />
           </div>
 
           <div class="form-group col-lg-6">
             <label
-              for="last_name"
+              for="lastName"
               class="col-form-label font-weight-bold"
             >Sobrenome: <span class="text-danger">*</span></label>
             <input
               type="text"
-              name="last_name"
-              id="last_name"
+              name="lastName"
+              id="lastName"
               class="form-control"
               placeholder="Digite seu sobrenome"
               required
-              v-model="user.last_name"
+              v-model="user.lastName"
             />
           </div>
         </div>
@@ -99,16 +99,17 @@
           </div>
           <div class="form-group col-lg-3">
             <label
-              for="phone"
+              for="telephone"
               class="font-weight-bold col-form-label"
-            >Telefone: </label>
+            >Telefone: <span class="text-danger">*</span></label>
             <input
               type="text"
-              name="phone"
-              id="phone"
+              name="telephone"
+              id="telephone"
               class="form-control"
               placeholder="(XX) X-XXXX-XXXX"
-              v-model="user.phone"
+              required
+              v-model="user.telephone"
             >
           </div>
         </div>
@@ -186,12 +187,12 @@
             v-for="user in users"
             :key="user.id"
           >
-            <td>{{ user.first_name }} </td>
-            <td>{{ user.last_name }} </td>
+            <td>{{ user.firstName }} </td>
+            <td>{{ user.lastName }} </td>
             <td>{{ user.email }} </td>
             <td>{{ user.gender === 'm' ? 'Masculino' : 'Feminino' }} </td>
             <td>{{ user.address }} </td>
-            <td>{{ user.phone }} </td>
+            <td>{{ user.telephone }} </td>
             <td>{{ user.username }} </td>
             <td class="d-flex justify-content-between">
               <a
@@ -251,15 +252,19 @@ export default {
     async save (user) {
       this.loading = true;
 
-      const method = user.id ? 'put' : 'post'
+      const method = user.id ? 'put' : 'post';
 
       api[method]('/', user).then(() => {
 
         Swal.fire(
-          'Usuário cadastrado com sucesso!',
+          `Usuário ${user.id ? 'alterado' : 'cadastrado'} com sucesso!`,
           '',
           'success'
         )
+
+        if (!user.id) {
+          this.users.push(user);
+        }
 
         this.user = { gender: '' }
       }).catch(() => {
