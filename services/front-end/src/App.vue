@@ -254,7 +254,7 @@ export default {
 
       const method = user.id ? 'put' : 'post';
 
-      api[method]('/', user).then(() => {
+      api[method]('/', user).then(response => {
 
         Swal.fire(
           `Usuário ${user.id ? 'alterado' : 'cadastrado'} com sucesso!`,
@@ -263,7 +263,7 @@ export default {
         )
 
         if (!user.id) {
-          this.users.push(user);
+          this.users.push(response.data);
         }
 
         this.user = { gender: '' }
