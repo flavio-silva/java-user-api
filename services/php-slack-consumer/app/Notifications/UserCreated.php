@@ -10,13 +10,12 @@ class UserCreated extends Notification
 {
     use Queueable;
 
-    private $name;
+    private $message;
     private $email;
 
-    public function __construct(string $name, string $email)
+    public function __construct(string $message)
     {
-        $this->name = $name;
-        $this->email = $email;
+        $this->message = $message;
     }
 
     public function via($notifiable)
@@ -27,6 +26,6 @@ class UserCreated extends Notification
     public function toSlack($notifiable)
     {
         return (new SlackMessage)
-            ->content("Hello {$notifiable->name}! O user {$this->name} has been created");
+            ->content("Hello {$notifiable->name}! {$this->message}");
     }
 }
