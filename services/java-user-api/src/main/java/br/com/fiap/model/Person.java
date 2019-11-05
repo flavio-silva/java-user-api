@@ -1,7 +1,5 @@
 package br.com.fiap.model;
 
-import lombok.Getter;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
