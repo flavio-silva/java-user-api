@@ -10,14 +10,12 @@
     </parent>
     <groupId>br.com.fiap</groupId>
     <artifactId>java-user-api</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>java-user-api</name>
-    <description>java-user-api</description>
+    <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>11</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-cloud.version>Hoxton.RC1</spring-cloud.version>
     </properties>
 
@@ -110,14 +108,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-
             </plugin>
         </plugins>
     </build>
