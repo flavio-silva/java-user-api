@@ -1,0 +1,43 @@
+version: '3.5'
+services:
+  fiap-microservices-user-ms:
+    build: .
+    image: fiap-microservices-user-ms:latest
+    container_name: fiap-microservices-user-ms
+    ports:
+      - "8080:8080"
+      - "7001:7000"
+    environment:
+      PORT: 8080
+      ENV: local
+      DB_HOST_NAME: fiap-db
+      DB_PORT: 3306
+      DB_NAME: microservices
+      DB_USERNAME: root
+      DB_PASSWORD: 123456
+      JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:7000
+    networks:
+      - fiap-microservices-network
+
+  db:
+    image: mysql:5.7
+    restart: always
+    container_name: fiap-db
+    environment:
+      MYSQL_DATABASE: microservices
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+    networks:
+      - fiap-microservices-network
+    volumes:
+      - db-data:/var/lib/mysql/
+
+volumes:
+  db-data:
+    driver: local
+networks:
+  fiap-microservices-network:
+    name: fiap-microservices-network
