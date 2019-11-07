@@ -4,7 +4,6 @@ services:
     build:
       context:  services/java-user-api/
       dockerfile: Dockerfile
-    # image: wellbastos/fiap-microservices:latest
     container_name: fiap-microservices
     ports:
     - "8080:8080"

@@ -8,6 +8,7 @@ function down_app_container() {
 function delete_latest_docker_image() {
     echo "Deleting latest docker image..."
     docker rmi -f fiap-microservices:latest
+    docker rmi -f frontend:latest
 }
 
 function build_application() {

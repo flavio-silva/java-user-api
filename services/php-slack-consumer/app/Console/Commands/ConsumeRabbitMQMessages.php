@@ -34,7 +34,7 @@ class ConsumeRabbitMQMessages extends Command
             echo $message->getStream() . PHP_EOL;
 
             $admin = factory(User::class)->state('admin')->make();
-            $admin->notify(new UserCreated('user test', 'user@test.com'));
+            $admin->notify(new UserCreated($message->getStream()));
 
             $message->getDeliveryInfo()->acknowledge();
         }, null, [

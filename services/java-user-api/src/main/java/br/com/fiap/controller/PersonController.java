@@ -2,12 +2,17 @@ package br.com.fiap.controller;
 
 
 import br.com.fiap.model.Person;
+import br.com.fiap.services.UserRegistrationSource;
 import br.com.fiap.services.PersonServices;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +21,7 @@ import java.util.List;
 @Api(value = "Person Endpoint", tags = {"PersonEndpoint"})
 @RestController
 @RequestMapping("/api/person/v1")
+@EnableBinding(UserRegistrationSource.class)
 public class PersonController {
 
     @Autowired
@@ -38,8 +44,8 @@ public class PersonController {
     @ApiOperation(value = "Create a People.")
     @ResponseStatus(HttpStatus.OK)
     @PostMapping
-    public Person create(@RequestBody Person person) {
-        return services.create(person);
+    public Person create(@RequestBody Person newPerson) {
+        return services.create(newPerson);
     }
 
     @ApiOperation(value = "Update People By your Id.")
@@ -56,8 +62,6 @@ public class PersonController {
         services.delete(id);
         return ResponseEntity.ok().build();
     }
-
-
 }
 
 
