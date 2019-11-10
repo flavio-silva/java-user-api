@@ -36,7 +36,7 @@ services:
       - AMQP_VHOST=/
       - AMQP_EXCHANGE_NAME=amq.fanout
       - AMQP_EXCHANGE_TYPE=fanout
-      - SLACK_WEBHOOK_URL=https://hooks.slack.com/services/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
+      - SLACK_WEBHOOK_URL=https://hooks.slack.com/services/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
     networks:
     - fiap-microservices
   db:
@@ -67,12 +67,12 @@ services:
     - "25676:25676"
     networks:
     - fiap-microservices
-  frontend: 
+  frontend:
     build:
       context: services/front-end/
       dockerfile: Dockerfile
     image: vuejs
-    restart: always    
+    restart: always
     container_name: front-end
     working_dir: /app
     ports:
