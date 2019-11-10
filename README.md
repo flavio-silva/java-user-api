@@ -52,8 +52,9 @@ Este projeto foi constituido com as tecnologias:
 ```
 Frontend: (http://localhost:8081)
 Api: (http://localhost:8080/api/person/v1)
-Adm Rabbitmq: i: (http://localhost:15672)
-Documentação: (http://localhost:8080/swagger-ui.html) 
+Healthcheck da Api: (http://localhost:8080/actuator/health)
+Adm Rabbitmq: (http://localhost:15672)
+Documentação: (http://localhost:8080/swagger-ui.html)
 ```
 
 **Documentação:**
