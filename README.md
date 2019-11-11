@@ -77,7 +77,8 @@ Clonar  o repositório .
 - cd microservices
 - mvn clean install -f services/java-user-api/pom.xml
 - docker-compose up
-- Aguardar todas as dependências do PHP serem instaladas (pode levar alguns minutos)
+- docker exec -it consumer-php-app composer install
+- docker exec -it consumer-php-app php artisan rabbitmq:consume
 
 ```
 
