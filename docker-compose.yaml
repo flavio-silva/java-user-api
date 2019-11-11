@@ -33,7 +33,7 @@ services:
       - AMQP_HOST=fiap-rabbit
       - AMQP_PORT=5672
       - AMQP_VHOST=/
-      - AMQP_EXCHANGE_NAME=amq.fanout
+      - AMQP_EXCHANGE_NAME=userRegistrations
       - AMQP_EXCHANGE_TYPE=fanout
       - SLACK_WEBHOOK_URL=https://hooks.slack.com/services/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
     networks:
