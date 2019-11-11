@@ -42,7 +42,7 @@ return [
             ],
 
             'queue' => [
-                'declare'      => env('AMQP_QUEUE_DECLARE', false),
+                'declare'      => env('AMQP_QUEUE_DECLARE', true),
                 'passive'      => env('AMQP_QUEUE_PASSIVE', false),
                 'durable'      => env('AMQP_QUEUE_DURABLE', true),
                 'exclusive'    => env('AMQP_QUEUE_EXCLUSIVE', false),
