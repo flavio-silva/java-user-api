@@ -36,6 +36,11 @@ services:
       - AMQP_EXCHANGE_NAME=userRegistrations
       - AMQP_EXCHANGE_TYPE=fanout
       - SLACK_WEBHOOK_URL=https://hooks.slack.com/services/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
+
+    command: bash -c "composer install && php artisan rabbitmq:consume"
+    depends_on:
+      - "rabbitmq"
+
     networks:
     - fiap-microservices
   db:
